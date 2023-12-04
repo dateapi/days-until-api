@@ -11,7 +11,8 @@ app.get('/:date', (req, res) => {
   const currentDate = moment().tz(timeZone);
   const daysUntil = moment(requestedDate).tz(timeZone).diff(currentDate, 'days');
 
-  res.json({ daysUntil });
+  // Send only the numeric value in the response
+  res.send(String(daysUntil));
 });
 
 app.listen(port, () => {
