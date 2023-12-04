@@ -1,0 +1,4 @@
+services:
+  - name: days-until-api
+    env: node
+    start_command: npm start
