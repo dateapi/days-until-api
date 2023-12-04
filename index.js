@@ -2,16 +2,19 @@ const express = require('express');
 const moment = require('moment-timezone');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = 3000; // You can change this port if needed
 
-app.get('/countdown/:date', (req, res) => {
-    const userDate = moment.tz(req.params.date, 'Asia/Manila');
-    const currentDate = moment.tz('Asia/Manila');
-    const daysUntil = userDate.diff(currentDate, 'days');
+// Define a route for the countdown
+app.get('/countdown', (req, res) => {
+  // Calculate the days until a specific date (replace '2023-12-31' with your target date)
+  const targetDate = moment.tz('2023-12-31', 'Your_Timezone');
+  const today = moment();
+  const daysUntil = targetDate.diff(today, 'days');
 
-    res.json({ daysUntil });
+  res.json({ daysUntil });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
