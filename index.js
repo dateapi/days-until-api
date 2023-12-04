@@ -7,9 +7,10 @@ app.get('/:date', (req, res) => {
   const requestedDate = req.params.date;
   const timeZone = 'Asia/Manila'; // Set your desired timezone
 
-  // Calculate the number of days until the requested date
+  // Calculate the number of days until the requested date, considering the time of the day
   const currentDate = moment().tz(timeZone);
-  const daysUntil = moment(requestedDate).tz(timeZone).diff(currentDate, 'days');
+  const endOfDay = moment().tz(timeZone).endOf('day');
+  const daysUntil = moment(requestedDate).tz(timeZone).endOf('day').diff(currentDate, 'days');
 
   // Send only the numeric value in the response
   res.send(String(daysUntil));
